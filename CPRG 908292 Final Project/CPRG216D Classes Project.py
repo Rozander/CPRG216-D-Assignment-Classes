@@ -5,12 +5,12 @@ Assignment 4
 Colton Rozander
 908292
 
-
+Program takes inputs on various variables such as Doctors, Facilities, Laboratories, and Patients and stores them within their respective files for later reference or editing.
 """
 import re
 
 class Doctor:
-    def __init__(self,docID,docName,docSpec,workingTime,qualification,roomNumber) -> None:
+    def __init__(self,docID,docName,docSpec,workingTime,qualification,roomNumber) -> None: #Initialization of ID, Name, Specialization, Working Time, Qualifications, and Room Number.
         self.docID = docID
         self.docName = docName
         self.docSpec = docSpec
@@ -18,28 +18,25 @@ class Doctor:
         self.qualification = qualification
         self.roomNumber = roomNumber
 
-    def formatDrInfo(propertiesValuesList):
+    def formatDrInfo(propertiesValuesList): #Formatting of Doctors.txt to increase readability
         spaces = [5,23,16,16,16,12]
         formattedText = ""
-
         for item in propertiesValuesList:
             formattedText += item + (" " * (spaces[propertiesValuesList.index(item)] - len(item)))
         return formattedText
     
-    def addDrToFile(drObject):
+    def addDrToFile(drObject): #Formats doctor information, then applies it to doctors.txt
         path = "doctors.txt"
         textOutput = ""
-
         file = open(path, "a")
         dr = drObject
         drProperties = [dr.docID, dr.docName, dr.docSpec, dr.workingTime, dr.qualification, dr.roomNumber]
-
         addText = Doctor.formatDrInfo(drProperties)
         textOutput += addText + "\n\n"
         file.write(textOutput)
         file.close()
 
-    def readDoctorsFile():
+    def readDoctorsFile(): #Accesses doctors.txt and provides values as a list
         doctorList = open("doctors.txt", "r")
         for line in doctorList:
             docLine = line.split("_")
@@ -52,7 +49,7 @@ class Doctor:
             Doctor(docID,docName,docSpec,workingTime,qualification,roomNumber)
         doctorList.close()
 
-    def enterDrInfo():
+    def enterDrInfo(): #Taking inputs for Doctor ID, Name, Specialization, Working Time, Qualifications and Room Number.
         docID = input("Enter the Doctor's ID: \n")
         docName = input("Enter the Doctor's Name: \n")
         docSpec = input("Enter the Doctor's Specialization: \n")
@@ -105,7 +102,7 @@ class Doctor:
         else:
             return -1
 
-    def displayDocList():
+    def displayDocList(): #Provides headers for Doctors.txt to increase readability
         path = "doctors.txt"
         headerList = ["ID","Name","Specialty","Timing","Qualifications","Room Number"]
         headerSpaces = [5,23,16,16,16,12]
@@ -142,7 +139,7 @@ class Doctor:
         file.close()
 
 class Facility:
-    def __init__(self,facilityName) -> None:
+    def __init__(self,facilityName) -> None: #Initialization
         self.facilityName = facilityName
 
     def addFacility(self):
@@ -167,7 +164,7 @@ class Facility:
                 file.write(facility + "\n\n")
 
 class Laboratory:
-    def __init__(self,labName,labCost) -> None:
+    def __init__(self,labName,labCost) -> None: #Initialization of Name and Cost
         self.labName = labName
         self.labCost = labCost
 
@@ -203,14 +200,14 @@ class Laboratory:
                 print(line)
         file.close()
 
-    def formatLabInfo(propertiesValuesList):
+    def formatLabInfo(propertiesValuesList): #Formats Laboritories.txt to increase readability
         spaces = [16,16]
         formattedText = ""
         for item in propertiesValuesList:
             formattedText += item + (" " * (spaces[propertiesValuesList.index(item)] - len(item)))
         return formattedText
 
-    def enterLaboratoryInfo(self):
+    def enterLaboratoryInfo(self): #Taking inputs for Laboratory facility and cost
         self.labName = input("Enter Laboratory facility: \n")
         self.labCost = input("Enter Laboratory cost: \n")
         Laboratory.addLabToFile(self)
@@ -234,21 +231,21 @@ class Laboratory:
 
 
 class Patient:
-    def __init__(self,patID,patName,patDisease,patGender,patAge) -> None:
+    def __init__(self,patID,patName,patDisease,patGender,patAge) -> None: #Initialization of ID, Name, Disease, Gender and Age
         self.patID = patID
         self.patName = patName
         self.patDisease = patDisease
         self.patGender = patGender
         self.patAge = patAge
 
-    def formatPatInfo(propertiesValuesList):
+    def formatPatInfo(propertiesValuesList): #Applies proper formatting and spacing to patients.txt to increase readability
         spaces = [5,23,16,16,16]
         formattedText = ""
         for item in propertiesValuesList:
             formattedText += item + (" " * (spaces[propertiesValuesList.index(item)] - len(item)))
         return formattedText
 
-    def enterPatInfo(self):
+    def enterPatInfo(self): #Taking inputs for Patient ID, Name, Disease, Gender and Age.
         self.patID = input("Enter the Patient's ID: \n")
         self.patName = input("Enter the Patient's Name: \n")
         self.patDisease = input("Enter the Patient's Disease: \n")
